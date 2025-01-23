@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommendations</title>
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+</head>
+<body>
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">FunTravel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destinations">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#video">Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#map">Map</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#footer">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div id="travelCarousel" class="carousel slide mt-3" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'image/1.jpg' %}" class="d-block w-100 carousel-img" alt="Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Explore the World</h5>
+                    <p>Discover amazing destinations.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'image/2.jpg' %}" class="d-block w-100 carousel-img" alt="Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Adventure Awaits</h5>
+                    <p>Unforgettable journeys for everyone.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'image/3.jpg' %}" class="d-block w-100 carousel-img" alt="Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Memories for a Lifetime</h5>
+                    <p>Create stories worth sharing.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#travelCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#travelCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    
+    <div id="destinations" class="container mt-5">
+        <h2 class="text-center mb-4">Top Destinations</h2>
+        <div class="row">
+            {% for destinations in destination %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ destinations.image.url }}" class="card-img-top" alt="Sample Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ destinations.name }}</h5>
+                            <p class="card-text">{{ destinations.description }}</p>
+                            <p><strong>Rating:</strong> {{ destinations.rating }}</p>
+                         
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    <div id="video" class="container mt-5">
+        <h2 class="text-center mb-4">Travel Inspiration</h2>
+        <div class="ratio ratio-16x9">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/YkFsf-vaLkI?si=8GCWJjQxgpg0314F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    
+    <div id="map" class="container mt-5">
+        <h2 class="text-center mb-4">Explore Locations</h2>
+        <div class="ratio ratio-16x9">
+            <iframe src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAP_EMBED_URL" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+
+    <div id="admin" class="container mt-5">
+        <h2 class="text-center mb-4">Bookings</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                  
+                        <h5 class="card-title">Book Tickets</h5>
+                        <p class="card-text">A Good Journey Is Waiting Ur Way...</p>
+                        <a href="{% url 'signup' %}" class="btn btn-secondary">Book Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <footer id="footer" class="bg-dark text-white mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About FunTravel</h5>
+                    <p>Your go-to platform for discovering exciting travel destinations.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <h5>Contact Us</h5>
+                    <p>Email: info@funtravel.com</p>
+                    <p>Phone: +123 456 7890</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-secondary text-center py-2">
+            <p class="mb-0">&copy; 2025 FunTravel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
